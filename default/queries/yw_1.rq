@@ -1,0 +1,10 @@
+#title:Get aliases
+#comment:Select all entities that have alternate versions (including these alternate values)
+#tags:yesWorkflow,order
+#color:ex-yellow
+
+SELECT ?entity ?alias
+WHERE {
+ ?alias prov:alternateOf ?entity
+}
+ORDER BY ?entity
