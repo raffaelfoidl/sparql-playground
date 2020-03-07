@@ -5,7 +5,7 @@
 
 SELECT (?entity AS ?return_value) (?activity AS ?function)
 WHERE {
- ?generation ?x prov:Generation .
+ ?generation a prov:Generation .
  ?generation prov:activity ?activity .
  ?entity prov:qualifiedGeneration ?generation .
 }

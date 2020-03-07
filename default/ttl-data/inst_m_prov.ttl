@@ -15,9 +15,6 @@ yw:diff__USE__save_diff_image a prov:Usage ;
 
 yw:save_diff_image prov:qualifiedUsage yw:diff__USE__save_diff_image .
 
-yw:out a prov:Entity ;
-	rdfs:label "output image file path" .
-
 yw:diff_image__GEN__calculate_differences a prov:Generation ;
 	prov:activity yw:calculate_differences .
 
@@ -30,10 +27,20 @@ yw:out_file__GEN__save_out_file a prov:Generation ;
 
 yw:out_file prov:qualifiedGeneration yw:out_file__GEN__save_out_file .
 
+yw:output_path__USE__inst_m.main a prov:Usage ;
+	prov:entity yw:output_path .
+
+yw:inst_m.main prov:qualifiedUsage yw:output_path__USE__inst_m.main .
+
 yw:diff__USE__inst_m.main a prov:Usage ;
 	prov:entity yw:diff .
 
 yw:inst_m.main prov:qualifiedUsage yw:diff__USE__inst_m.main .
+
+yw:output_path__USE__save_out_file a prov:Usage ;
+	prov:entity yw:output_path .
+
+yw:save_out_file prov:qualifiedUsage yw:output_path__USE__save_out_file .
 
 yw:input_file__GEN__read_input a prov:Generation ;
 	prov:activity yw:read_input .
@@ -44,6 +51,14 @@ yw:diff_image__USE__save_diff_image a prov:Usage ;
 	prov:entity yw:diff_image .
 
 yw:save_diff_image prov:qualifiedUsage yw:diff_image__USE__save_diff_image .
+
+yw:input_path__USE__inst_m.main a prov:Usage ;
+	prov:entity yw:input_path .
+
+yw:inst_m.main prov:qualifiedUsage yw:input_path__USE__inst_m.main .
+
+yw:input_path a prov:Entity ;
+	rdfs:label "input file" .
 
 yw:input_file__USE__apply_gauss a prov:Usage ;
 	prov:entity yw:input_file .
@@ -57,6 +72,11 @@ yw:sigma__USE__inst_m.main a prov:Usage ;
 	prov:entity yw:sigma .
 
 yw:inst_m.main prov:qualifiedUsage yw:sigma__USE__inst_m.main .
+
+yw:input_path__USE__read_input a prov:Usage ;
+	prov:entity yw:input_path .
+
+yw:read_input prov:qualifiedUsage yw:input_path__USE__read_input .
 
 yw:diff a prov:Entity ;
 	rdfs:label "diff image file path" .
@@ -90,39 +110,19 @@ yw:calculate_differences prov:qualifiedUsage yw:input_file__USE__calculate_diffe
 yw:diff_image a prov:Entity .
 
 yw:save_out_file a prov:Activity ;
-	rdfs:label "persist blurred image" .
+	rdfs:label "persist blurred image" , "log_out_file: Done saving output image" .
 
 yw:sigma a prov:Entity ;
 	rdfs:label "sigma for gauss filter" .
 
-yw:out__USE__inst_m.main a prov:Usage ;
-	prov:entity yw:out .
-
-yw:inst_m.main prov:qualifiedUsage yw:out__USE__inst_m.main .
-
-yw:in__USE__inst_m.main a prov:Usage ;
-	prov:entity yw:in .
-
-yw:inst_m.main prov:qualifiedUsage yw:in__USE__inst_m.main .
-
-yw:in__USE__read_input a prov:Usage ;
-	prov:entity yw:in .
-
-yw:read_input prov:qualifiedUsage yw:in__USE__read_input .
-
-yw:in a prov:Entity ;
-	rdfs:label "input file" .
-
-yw:out__USE__save_out_file a prov:Usage ;
-	prov:entity yw:out .
-
-yw:save_out_file prov:qualifiedUsage yw:out__USE__save_out_file .
+yw:output_path a prov:Entity ;
+	rdfs:label "output image file path" .
 
 yw:inst_m.main a prov:Activity ;
 	rdfs:label "Blurs an image and computes the differences to the original" .
 
 yw:calculate_differences a prov:Activity ;
-	rdfs:label "compute color differences in pixels" .
+	rdfs:label "compute color differences in pixels" , "log_diff_image: {percentage} % done" , "log_diff_image: Done caluclating" .
 
 yw:diff_file a prov:Entity ;
 	rdfs:label "file:{diff}" .
@@ -146,3 +146,7 @@ yw:input_file a prov:Entity .
 
 yw:out_file a prov:Entity ;
 	rdfs:label "file:{out}" .
+
+yw:output_path prov:alternateOf yw:out .
+
+yw:input_path prov:alternateOf yw:in .
