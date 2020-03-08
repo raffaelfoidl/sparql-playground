@@ -222,6 +222,19 @@ function snorql($http, $q, $timeout, $location, config) {
           alert("error " + error.data.responseText);
       })
   }
+
+  Snorql.prototype.loadFile=function(file){
+      var self=this;
+      var url = this.dataURL + "/files";
+      return $http({
+          url: url,
+          method: 'PUT',
+          params: {file : file}}).then(function(response){
+          console.log(response);
+      }, function(error){
+          alert("error " + error.data.responseText);
+      })
+  }
 	  
   // manage default snorql state
   Snorql.prototype.updateQuery=function(params){

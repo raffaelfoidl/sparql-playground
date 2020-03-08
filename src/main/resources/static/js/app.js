@@ -70,6 +70,7 @@ function SnorqlCtrl( $scope,  $timeout, $window, $location,  snorql,  config) {
 
   // turtle files
   $scope.files = [];
+  $scope.turtleFile = "";
 
 
   $scope.executeFaq = function (faq){
@@ -161,8 +162,20 @@ function SnorqlCtrl( $scope,  $timeout, $window, $location,  snorql,  config) {
 
   $scope.getTurtleFiles=function(){
       snorql.getTurtleFiles().then(function (value) {
-          $scope.files = value.split("\n");
+          $scope.files = value.split("\n")
+          $scope.files.sort();
+          $scope.turtleFile = $scope.files[0];
       });
+  }
+
+    $scope.handleClick = function(selectedItem) {
+        var index = $scope.files.indexOf(selectedItem);
+        $scope.turtleFile = $scope.files[index];
+    }
+
+  $scope.loadData=function(){
+      console.log($scope.turtleFile);
+      snorql.loadFile($scope.turtleFile);
   }
 
   var init=function(){

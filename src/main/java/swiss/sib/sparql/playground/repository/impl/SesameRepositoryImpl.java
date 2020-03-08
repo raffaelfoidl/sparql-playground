@@ -5,9 +5,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
 
 import javax.annotation.PostConstruct;
 
@@ -173,6 +173,26 @@ public class SesameRepositoryImpl implements SesameRepository, InitializingBean 
 		}
 
 		return returnValue;
+	}
+
+	@Override
+	public String loadFile(String file) {
+		try {
+			byte[] content = Files.readAllBytes(Paths.get(Application.FOLDER + "/ttl-data/" + file));
+			InputStream stream = new ByteArrayInputStream(content);
+			rep.getConnection().add(stream, "", RDFFormat.TURTLE, new Resource[] {});
+			return new String(content);
+
+		} catch (RepositoryException e) {
+			e.printStackTrace();
+			throw new SparqlTutorialException(e);
+		} catch (RDFParseException e) {
+			e.printStackTrace();
+			throw new SparqlTutorialException(e);
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new SparqlTutorialException(e);
+		}
 	}
 
 	public void testLoadTurtleData(String data) {
