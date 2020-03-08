@@ -2,14 +2,14 @@
 
       <div class="row row-offcanvas row-offcanvas-right">
 
-        <div class="col-xs-12 col-sm-12 col-md-6 ">
+        <div class="col-xs-14 col-sm-14 col-md-8 ">
           <p class="pull-right visible-sm visible-xs -visible-md">
             <button id="toggle-examples" type="button" class="btn btn-primary btn-xs" menu-toggle="offcanvas">sparql example</button>
           </p>
           <div class="snorql">
             <form>
               <h5>{{snorql.queryTitle}}</h5>
-              <textarea style="border:none; width:100%; margin-top:1px; resize-disable: none;" rows=4 ng-model=snorql.description/>
+                <textarea style="border:none; width:100%; margin-top:1px; resize: vertical;" rows=4 ng-model=snorql.description></textarea>
 
 	            <a style="font-size:11px" href="#" ng-click="showPrefixes = !showPrefixes">{{showPrefixes? "Hide prefixes" : "Show prefixes ..."}}</a>
 			 	<div class="pull-right hidden-xs hidden-sm" style="font-size:11px">endpoint: <a target="blank" ng-href="{{snorql.endpoint()}}">{{snorql.endpoint()}}</a></div>
@@ -24,12 +24,6 @@
                   <select class="form-control" ng-disabled="waiting||!snorql.query" ng-model="output" ng-options="output for output in outputs"></select>
                   <button type="button" class="btn btn-primary" ng-disabled="waiting||!snorql.query" ng-click="executeQuery(snorql.query,output)">Go</button>
                   <button type="button" class="btn btn-default"  ng-click="snorql.reset()">Reset</button>
-                  <div class="input-group pull-right">
-                    <input type="text"  class="form-control" ng-model="term" placeholder="term finder">
-                    <span class="input-group-btn">
-                      <button type="button" class="btn btn-default "  ng-click="searchTerm(term)" ng-disabled="!term||waiting"><i class="glyphicon glyphicon-search"></i></button>
-                    </span>
-                  </div>
               </div>
             </form>
           </div>
@@ -50,7 +44,7 @@
         </div><!--/span-->
 
         <!-- DISPLAY SPARQL EXAMPLES -->
-        <div class="col-xs-6 col-sm-6 col-md-6 sidebar-offcanvas" id="sidebar" role="navigation" >
+        <div class="col-xs-4 col-sm-4 col-md-4 sidebar-offcanvas" id="sidebar" role="navigation" style="padding-left: 5px; padding-right: 25px;" >
           <div class="list-group examples">
             <div class="input-group">
             </div>
@@ -72,7 +66,7 @@
                 <a ng-class="qSelected===example.index ? 'active' : example.backgroundColor" ng-class="example | containsTag" href="#" ng-click="selectExample(example.index, example.userQueryId > 1000);"  class="list-group-item query-{{example.index}}">
                 <h5 class="list-group-item-heading">{{example.userQueryId}}) {{example.title}}</h5>
                 <p class="list-group-item-text"><span  class="label"  >
-                  <span ng-repeat="tag in example.tags | orderBy" class="label label-default label-as-badge">{{tag}}</span>
+                    <span ng-repeat="tag in example.tags | orderBy" class="label label-default label-as-badge">{{tag}}</span></span>
                 </p>
                </a>
               	<button style="position:absolute; z-index:2" ng-if="example.img"  ng-click="example.show=!example.show"  type="button" class="btn btn-info btn-xs pull-right ex-btn-show">{{example.show ? "hide" : "show"}} diagram</button>

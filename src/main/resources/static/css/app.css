@@ -36,6 +36,10 @@ textarea.form-control{
   overflow:hidden;
 }
 
+.CodeMirror {
+    resize: vertical;
+}
+
 .codemirror-data>.CodeMirror{
 	height:100%;
 }
@@ -276,6 +280,7 @@ fieldset[disabled] .navbar-snorql .btn-link:focus {
 .link { background: center right no-repeat; padding-right: 13px; }
 .queryresults { border-collapse: collapse; margin-top: 0.3em;width:100%;font-size:90%; }
 .queryresults td, .queryresults th { padding: 0.2em 0.4em; vertical-align: top; }
+.queryresults td { word-break: break-word; }
 .uri { white-space: nowrap; }
 .uri a, a.uri { text-decoration: none; }
 .unbound { color: #888; }
@@ -288,7 +293,7 @@ fieldset[disabled] .navbar-snorql .btn-link:focus {
 
 .snorql h1, .snorql h2 { color: #400; }
 .snorql #header, .snorql .section { background: #ccecff; }
-.snorql .queryresults th { background: #4A87C3; }
+.snorql .queryresults th { background: #4A87C3; color:white; }
 .snorql .queryresults .odd td { background: #F2FAFF;max-width: 30%; }
 .snorql .queryresults .even td { background: #DDF3FF;max-width: 30%; }
 
