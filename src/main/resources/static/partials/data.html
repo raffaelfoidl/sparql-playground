@@ -1,8 +1,6 @@
 <div id="content" class="content codemirror-data">
-	<textarea class="form-control" rows="20" ui-codemirror="{lineNumbers: true, indentWithTabs: true, uiRefresh:true,mode:'sparql'}" ng-model="snorql.data"></textarea>
-	<button type="button" class="btn btn-primary" ng-click="pushData()">Reload Turtle Data</button>
-	Select data source: <br/>
+	Select data source:
 	<select ng-model="turtleFile" ng-change="handleClick(turtleFile)" ng-options="x for x in files"></select>
-	<br/>
-	<button type="button" class="btn btn-primary" ng-click="loadData()">Load Turtle Data</button>
+	<button type="button" class="btn btn-primary" style="margin-top:0;" ng-click="loadData()">Load Turtle Data</button>
+	<textarea class="form-control" rows="20" ui-codemirror="{lineNumbers: true, indentWithTabs: true, readOnly: true, uiRefresh:true,mode:'sparql'}" ng-model="datasource"></textarea>
 </div>

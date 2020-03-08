@@ -38,6 +38,8 @@ textarea.form-control{
 
 .CodeMirror {
     resize: vertical;
+    margin-top: 10px;
+
 }
 
 .codemirror-data>.CodeMirror{

@@ -165,6 +165,7 @@ function SnorqlCtrl( $scope,  $timeout, $window, $location,  snorql,  config) {
           $scope.files = value.split("\n")
           $scope.files.sort();
           $scope.turtleFile = $scope.files[0];
+          $scope.loadData();
       });
   }
 
@@ -174,8 +175,9 @@ function SnorqlCtrl( $scope,  $timeout, $window, $location,  snorql,  config) {
     }
 
   $scope.loadData=function(){
-      console.log($scope.turtleFile);
-      snorql.loadFile($scope.turtleFile);
+      snorql.loadFile($scope.turtleFile).then(function (value) {
+          $scope.datasource = value;
+      });
   }
 
   var init=function(){

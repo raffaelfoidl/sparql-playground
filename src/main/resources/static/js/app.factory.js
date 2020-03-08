@@ -230,7 +230,7 @@ function snorql($http, $q, $timeout, $location, config) {
           url: url,
           method: 'PUT',
           params: {file : file}}).then(function(response){
-          console.log(response);
+          return response.data;
       }, function(error){
           alert("error " + error.data.responseText);
       })
