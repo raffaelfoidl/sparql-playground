@@ -1,6 +1,7 @@
 package swiss.sib.sparql.playground.repository;
 
 import java.io.OutputStream;
+import java.util.List;
 import java.util.Map;
 
 import org.openrdf.query.Query;
@@ -16,6 +17,7 @@ import org.openrdf.query.resultio.TupleQueryResultWriter;
  */
 public interface SesameRepository{
 
+	List<String> getTurtleFiles();
 	void testLoadTurtleData(String data);
 	void loadTurtleData(String data);
 	boolean isDataLoadAllowed();

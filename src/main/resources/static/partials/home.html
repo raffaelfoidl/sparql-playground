@@ -9,7 +9,7 @@
           <div class="snorql">
             <form>
               <h5>{{snorql.queryTitle}}</h5>
-                <textarea style="border:none; width:100%; margin-top:1px; resize: vertical;" rows=4 ng-model=snorql.description></textarea>
+                <textarea style="border:none; width:100%; margin-top:1px; resize: vertical;" readonly rows=4 ng-model=snorql.description></textarea>
 
 	            <a style="font-size:11px" href="#" ng-click="showPrefixes = !showPrefixes">{{showPrefixes? "Hide prefixes" : "Show prefixes ..."}}</a>
 			 	<div class="pull-right hidden-xs hidden-sm" style="font-size:11px">endpoint: <a target="blank" ng-href="{{snorql.endpoint()}}">{{snorql.endpoint()}}</a></div>

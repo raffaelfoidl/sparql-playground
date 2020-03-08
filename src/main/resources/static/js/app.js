@@ -156,6 +156,10 @@ function SnorqlCtrl( $scope,  $timeout, $window, $location,  snorql,  config) {
 	  snorql.pushData();
    };
 
+  $scope.getTurtleFiles=function(){
+      snorql.getTurtleFiles();
+  }
+
   //
   // load api stuff
   snorql.loadPrefixes();

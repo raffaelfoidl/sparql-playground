@@ -51,6 +51,11 @@ public class SparqlController {
 		sparqlService.writeData(response.getOutputStream());
 	}
 
+	@RequestMapping(value = "/ttl-data/files", method = RequestMethod.GET)
+	public void sparqlDataFiles(HttpServletResponse response) throws QueryEvaluationException, Exception {
+		sparqlService.getTurtleFiles(response.getOutputStream());
+	}
+
 	@RequestMapping(value = "/ttl-data", method = RequestMethod.PUT)
 	public long sparqlData(@RequestParam(value = "data", required = true) String data, HttpServletRequest request) throws QueryEvaluationException, Exception {
 

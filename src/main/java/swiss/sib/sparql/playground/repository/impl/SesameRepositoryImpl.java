@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -154,6 +156,24 @@ public class SesameRepositoryImpl implements SesameRepository, InitializingBean 
 			e.printStackTrace();
 			throw new SparqlTutorialException(e);
 		}
+	}
+
+	@Override
+	public List<String> getTurtleFiles() {
+		File folder = new File(Application.FOLDER + "/ttl-data");
+		File[] files = folder.listFiles();
+		List<String> returnValue = new ArrayList<>();
+		if (files == null)
+			return returnValue;
+
+		for (final File fileEntry : files) {
+			if (!fileEntry.isDirectory()) {
+				logger.debug("Reading " + fileEntry);
+				returnValue.add(fileEntry.getName());
+			}
+		}
+
+		return returnValue;
 	}
 
 	public void testLoadTurtleData(String data) {
