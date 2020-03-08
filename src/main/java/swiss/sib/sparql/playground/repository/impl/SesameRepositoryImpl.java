@@ -168,7 +168,6 @@ public class SesameRepositoryImpl implements SesameRepository, InitializingBean 
 
 		for (final File fileEntry : files) {
 			if (!fileEntry.isDirectory()) {
-				logger.debug("Reading " + fileEntry);
 				returnValue.add(fileEntry.getName());
 			}
 		}

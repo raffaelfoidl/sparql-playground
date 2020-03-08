@@ -67,8 +67,11 @@ function SnorqlCtrl( $scope,  $timeout, $window, $location,  snorql,  config) {
     uiRefresh:true,
     mode:'sparql'
   };
-  
-  
+
+  // turtle files
+  $scope.files = [];
+
+
   $scope.executeFaq = function (faq){
       $scope.executionTime=false;
       $scope.waiting=false;
@@ -107,7 +110,7 @@ function SnorqlCtrl( $scope,  $timeout, $window, $location,  snorql,  config) {
     $location.search('property',null)
     $location.search('describe',null)
     $location.search('output',output)
- 
+
     var params=angular.extend($location.search(),{output:output});
     snorql.executeQuery(sparql, params).$promise.then(function(){
       $scope.waiting=false;
@@ -124,7 +127,7 @@ function SnorqlCtrl( $scope,  $timeout, $window, $location,  snorql,  config) {
 	  }else {
 		    snorql.query=snorql.examples[elm].sparql;
 	  }
-	  
+
     snorql.description=snorql.examples[elm].description;
     snorql.selectedQueryId=snorql.examples[elm].userQueryId;
     snorql.queryTitle=snorql.examples[elm].userQueryId + ") " + snorql.examples[elm].title;
@@ -151,22 +154,29 @@ function SnorqlCtrl( $scope,  $timeout, $window, $location,  snorql,  config) {
   $scope.logout=function(){
     user.logout();
   };
-  
+
   $scope.pushData =function(){
 	  snorql.pushData();
    };
 
   $scope.getTurtleFiles=function(){
-      snorql.getTurtleFiles();
+      snorql.getTurtleFiles().then(function (value) {
+          $scope.files = value.split("\n");
+      });
   }
 
+  var init=function(){
+      $scope.getTurtleFiles();
+      console.log("loaded turtle files");
+  }
+  init();
   //
   // load api stuff
   snorql.loadPrefixes();
   snorql.loadExamples();
   snorql.loadFaqs();
   snorql.loadData();
-  
+
   //
   // kind of queries,
   // query, describe, class, property

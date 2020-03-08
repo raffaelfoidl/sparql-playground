@@ -214,12 +214,10 @@ function snorql($http, $q, $timeout, $location, config) {
   Snorql.prototype.getTurtleFiles=function(){
       var self=this;
       var url = this.dataURL + "/files";
-      console.log(url);
       return $http({
           url: url,
           method: 'GET'}).then(function(response){
-          console.log("yeees");
-          console.log(response);
+          return response.data;
       }, function(error){
           alert("error " + error.data.responseText);
       })
