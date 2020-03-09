@@ -129,7 +129,8 @@ public class SesameRepositoryImpl implements SesameRepository, InitializingBean 
 				}
 			}
 		}
-		logger.info("Loading turtle files finished in " + (System.currentTimeMillis() - start) + " ms");
+		String verb = add ? "Loading" : "Discovering";
+		logger.info(verb + " turtle files finished in " + (System.currentTimeMillis() - start) + " ms");
 
 	}
 

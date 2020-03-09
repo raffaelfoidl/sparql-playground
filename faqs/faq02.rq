@@ -3,4 +3,4 @@
 #comment:Depending on how large the dataset is, this query may take some time (be patient and just wait for an answer)
     
 SELECT (COUNT(*) AS ?no) 
-where { ?s ?p ?o  }
+WHERE { ?s ?p ?o  }

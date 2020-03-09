@@ -1,6 +1,6 @@
 <div id="explore" class="container small-codemirror">
-	<h1>Generic queries to explore a new dataset</h1>
-	<div class="row" ng-repeat="faq in snorql.faqs">
+	<h1 style="margin-top:0;">Generic queries to explore a new dataset</h1>
+	<div class="row" style="margin-left: 5px;" ng-repeat="faq in snorql.faqs">
 		<h2>FAQ{{faq.userQueryId}} - {{faq.title}}</h2>
 		<p>{{faq.description}}</p>
 		<textarea id="faq" class="small-codemirror" ui-codemirror="{mode:'sparql'}" ng-model="faq.sparql">

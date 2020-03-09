@@ -1,4 +1,4 @@
-# Sparql Playground
+# SPARQL Playground
 
 [![Build Status](https://travis-ci.org/calipho-sib/sparql-playground.svg?branch=master)](https://travis-ci.org/calipho-sib/sparql-playground)
 

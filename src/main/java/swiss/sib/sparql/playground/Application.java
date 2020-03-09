@@ -21,7 +21,7 @@ public class Application {
 
 	private static final Log logger = LogFactory.getLog(Application.class);
 
-	public static String FOLDER = "default";
+	public static String FOLDER = "provcapt";
 
 	public static void main(String[] args) {
 

@@ -1,9 +1,9 @@
 #title:Which classes use a particular property?
-#comment:In this example we see which classes uses dbp:name
+#comment:In this example we see which classes use prov:qualifiedAssociation
     
 SELECT DISTINCT ?class
 WHERE {
-    ?subject dbp:name ?o .
+    ?subject prov:qualifiedAssociation ?o .
 	?subject a ?class .
 }
 
