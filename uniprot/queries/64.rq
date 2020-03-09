@@ -1,8 +1,0 @@
-#title: STLEN = "String Length"
-#color:ex-red 
-SELECT * 
-WHERE {
-	?taxon a up:Taxon ; 
-		up:scientificName ?name . 
-	FILTER (STRLEN(?name) < 5)
-}

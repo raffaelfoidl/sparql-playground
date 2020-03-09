@@ -1,8 +1,0 @@
-#title:Two variables one output column
-#color:ex-red 
-SELECT ?taxon
-WHERE
-{
-	?taxon a up:Taxon ;
-	       up:scientificName ?name .
-}

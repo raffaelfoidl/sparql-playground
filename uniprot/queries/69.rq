@@ -1,7 +1,0 @@
-#title: BIND can assign any output
-#color:ex-red 
-SELECT *
-WHERE {
-  ?taxon a up:Taxon ; up:scientificName ?name .
-  BIND(STRLEN(?name) > 10 AS ?longerThanTen)
-}

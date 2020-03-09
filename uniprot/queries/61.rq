@@ -1,3 +1,0 @@
-#title: = does casting (value conversion
-#color:ex-red 
-SELECT * {?s ?p ?o . FILTER("1.0"^^xsd:float = "1"^^xsd:int)} LIMIT 1

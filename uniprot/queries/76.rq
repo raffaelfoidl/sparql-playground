@@ -1,8 +1,0 @@
-#title: UNION for OR of predicate
-#color:ex-red 
-SELECT ?name
-WHERE {
-	{taxon:9994 up:scientificName ?name .}
-	UNION 
-	{taxon:9994 up:otherName ?name .}
-}
