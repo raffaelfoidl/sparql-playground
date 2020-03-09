@@ -14,11 +14,14 @@
           </p>
           <div class="snorql">
             <form>
-              <h5>{{snorql.queryTitle}}</h5>
-                <textarea style="border:none; width:100%; margin-top:1px; resize: vertical;" readonly rows=4 ng-model=snorql.description></textarea>
+              <h4>{{snorql.queryTitle}}</h4>
+                <textarea style="border:none; width:100%; margin-top:1px; resize: vertical; background: rgb(240,240,240);" readonly rows=4 ng-model=snorql.description></textarea>
+
+                <span style="margin-top:5px;">Command with parameters that are (at least) required to create a data source file for this query:</span>
+                <textarea style="border:none; width: 100%; resize: none; margin-top:2px; background: rgb(240,240,240);" rows="1">wefew</textarea>
 
 	            <a style="font-size:11px" href="#" ng-click="showPrefixes = !showPrefixes">{{showPrefixes? "Hide prefixes" : "Show prefixes ..."}}</a>
-			 	<div class="pull-right hidden-xs hidden-sm" style="font-size:11px">endpoint: <a target="blank" ng-href="{{snorql.endpoint()}}">{{snorql.endpoint()}}</a></div>
+			 	<div class="pull-right hidden-xs hidden-sm" style="font-size:11px;margin-top:5px;">endpoint: <a target="blank" ng-href="{{snorql.endpoint()}}">{{snorql.endpoint()}}</a></div>
 
 	            <ul ng-show="showPrefixes"  class="list-unstyled prefixes">
 	              <li style="font-size:10px" ng-repeat="(prefix, url) in snorql.getPrefixes()">PREFIX {{prefix}}:&lt;{{url}}&gt;</li>
@@ -28,17 +31,17 @@
 
               <div class=" form-inline">
                   <select class="form-control" ng-disabled="waiting||!snorql.query" ng-model="output" ng-options="output for output in outputs"></select>
-                  <button type="button" class="btn btn-primary" ng-disabled="waiting||!snorql.query" ng-click="executeQuery(snorql.query,output)">Go</button>
+                  <button type="button" class="btn btn-primary" ng-disabled="waiting||!snorql.query||datasource=='Loading...'" ng-click="executeQuery(snorql.query,output)">Go</button>
                   <button type="button" class="btn btn-default"  ng-click="snorql.reset()">Reset</button>
               </div>
             </form>
           </div>
 
           <!-- DISPLAY SPARQL RESULT -->
-          <div class=" snorql " style="min-height:60px">
-            <div class="snorql-info" ng-show="waiting">Excuting query ...</div>
-            <div class="snorql-info" ng-show="error">{{error}}</div>
-            <div class="snorql-info" ng-show="executionTime">Query time is {{executionTime}}[s] for {{snorql.result.results.bindings.length||0}} rows</div>
+          <div class=" snorql " style="min-height:60px; padding-left: 4px; padding-right: 4px;">
+            <div class="snorql-info" style="padding-left:0;padding-right:0" ng-show="waiting">Excuting query ...</div>
+            <div class="snorql-info" style="padding-left:0;padding-right:0" ng-show="error">{{error}}</div>
+            <div class="snorql-info" style="padding-left:0;padding-right:0" ng-show="executionTime">Query time is {{executionTime}}[s] for {{snorql.result.results.bindings.length||0}} rows</div>
             <div class=" " sparql-formatter="snorql.result"></div>
           </div>
 
