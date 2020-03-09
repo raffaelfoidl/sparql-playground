@@ -32,7 +32,7 @@ function snorql($http, $q, $timeout, $location, config) {
 
     description:   'In this text field, descriptions of the queries to your right will appear after selecting them.',
 
-
+    command:"",
     title:"Welcome!",
     query:'# Feel free to select (and edit) a query from the right, create new ones\n# in the \"default/queries\" folder or directly enter one in this text field',
 
@@ -100,7 +100,7 @@ function snorql($http, $q, $timeout, $location, config) {
 
     // initial selected query title
     this.queryTitle = defaultSnorql.title;
-    
+
     // initial url for examples
     this.examplesUrl=defaultSnorql.sparqlUrlExamples;
 
@@ -112,6 +112,7 @@ function snorql($http, $q, $timeout, $location, config) {
 
     
     this.description = defaultSnorql.description;
+    this.command = defaultSnorql.command;
     //
     // wrap promise to this object
     this.$promise=$q.when(this);

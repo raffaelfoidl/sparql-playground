@@ -18,7 +18,7 @@
                 <textarea style="border:none; width:100%; margin-top:1px; resize: vertical; background: rgb(240,240,240);" readonly rows=4 ng-model=snorql.description></textarea>
 
                 <span style="margin-top:5px;">Command with parameters that are (at least) required to create a data source file for this query:</span>
-                <textarea style="border:none; width: 100%; resize: none; margin-top:2px; background: rgb(240,240,240);" rows="1">wefew</textarea>
+                <textarea style="padding-left:8px;padding-right:8px;padding-top:4px;padding-bottom:4px;border:none; width: 100%; resize: none; margin-top:2px; background: rgb(240,240,240);white-space: pre;overflow-wrap: normal;overflow-x:scroll" wrap="soft" rows="1">{{snorql.command ? snorql.command : "&lt;example command&gt;"}}</textarea>
 
 	            <a style="font-size:11px" href="#" ng-click="showPrefixes = !showPrefixes">{{showPrefixes? "Hide prefixes" : "Show prefixes ..."}}</a>
 			 	<div class="pull-right hidden-xs hidden-sm" style="font-size:11px;margin-top:5px;">endpoint: <a target="blank" ng-href="{{snorql.endpoint()}}">{{snorql.endpoint()}}</a></div>

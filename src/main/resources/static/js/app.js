@@ -132,6 +132,7 @@ function SnorqlCtrl( $scope,  $timeout, $window, $location,  snorql,  config) {
     snorql.description=snorql.examples[elm].description;
     snorql.selectedQueryId=snorql.examples[elm].userQueryId;
     snorql.queryTitle=snorql.examples[elm].userQueryId + ") " + snorql.examples[elm].title;
+    snorql.command=snorql.examples[elm].command;
     $scope.qSelected=elm
     $('.row-offcanvas').removeClass('active')
   };
