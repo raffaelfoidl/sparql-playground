@@ -1,5 +1,6 @@
 #title:Get log messages
 #comment:Selects all log messages that have been declared using the @log qualifying annotation, including the entity that has received/triggered the log entry.
+#command:yw extract script.py -c extract.provenancefile=script_prov -c extract.provenanceformat=turtle -c extract.provenancens=http://yesworkflow.org/ -c extract.provenanceprefix=yw
 #tags:yesWorkflow,alias,bind,replace,regex
 #color:ex-yellow
 

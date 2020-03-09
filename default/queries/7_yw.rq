@@ -1,5 +1,6 @@
 #title:Get functions that have at least 2 parameters
 #comment:Selects all functions that are defined to consume at least a certain number of input parameters.
+#command:yw extract script.py -c extract.provenancefile=script_prov -c extract.provenanceformat=turtle -c extract.provenancens=http://yesworkflow.org/ -c extract.provenanceprefix=yw
 #tags:yesWorkflow,alias,bind,replace,str,count,group_concat,having,order,group
 #color:ex-yellow
 

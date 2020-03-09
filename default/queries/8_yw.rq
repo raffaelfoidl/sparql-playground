@@ -1,5 +1,6 @@
 #title:Get helper method calls
 #comment:Selects all calls to helper functions defined by a @call annotation, i. e. the calling function, the helper method and the helper method's description, if available.
+#command:yw extract script.py -c extract.provenancefile=script_prov -c extract.provenanceformat=turtle -c extract.provenancens=http://yesworkflow.org/ -c extract.provenanceprefix=yw
 #tags:yesWorkflow,alias,bind,optional,replace,str,group,order,coalesce,group_concat,sample
 #color:ex-yellow
 
