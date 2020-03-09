@@ -1,0 +1,84 @@
+@prefix ns1: <https://github.com/gems-uff/noworkflow#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ns1:fileAccess35_a a prov:Activity,
+        "w"^^xsd:string ;
+    prov:atLocation "res_summary_216.csv"^^xsd:string ;
+    prov:qualifiedCommunication ns1:fileAcc35AddAcc ;
+    prov:time "2020-03-01T17:15:47.637393"^^xsd:dateTime ;
+    ns1:buffering "default"^^xsd:string ;
+    ns1:contentHashAfter "555b4abbcb83a958370ba3414b0954b86426feee"^^xsd:string ;
+    ns1:contentHashBefore "555b4abbcb83a958370ba3414b0954b86426feee"^^xsd:string ;
+    ns1:id "35"^^xsd:int .
+
+ns1:fileAccess36_a a prov:Activity,
+        "w+b"^^xsd:string ;
+    prov:atLocation "res_summary_216.jpg"^^xsd:string ;
+    prov:qualifiedCommunication ns1:fileAcc36AddAcc ;
+    prov:time "2020-03-01T17:15:58.893885"^^xsd:dateTime ;
+    ns1:buffering "default"^^xsd:string ;
+    ns1:contentHashAfter "7fa82f589739ecf3db22f58f5b01a27f10f5866a"^^xsd:string ;
+    ns1:contentHashBefore "7fa82f589739ecf3db22f58f5b01a27f10f5866a"^^xsd:string ;
+    ns1:id "36"^^xsd:int .
+
+ns1:fileAccess37_a a prov:Activity,
+        "w"^^xsd:string ;
+    prov:atLocation "res_conflicts_216.json"^^xsd:string ;
+    prov:qualifiedCommunication ns1:fileAcc37AddAcc ;
+    prov:time "2020-03-01T17:15:58.951070"^^xsd:dateTime ;
+    ns1:buffering "default"^^xsd:string ;
+    ns1:contentHashAfter "92a8b5e198d7f8873d5099cc3677b5c8b2fa9710"^^xsd:string ;
+    ns1:contentHashBefore "43e3a00a9c65a2abfb70e8b467e8833f5d71dd15"^^xsd:string ;
+    ns1:id "37"^^xsd:int .
+
+ns1:fileAcc35AddAcc a prov:Communication,
+        "fileAccessAddition"^^xsd:string ;
+    prov:activity ns1:trial1Execution .
+
+ns1:fileAcc36AddAcc a prov:Communication,
+        "fileAccessAddition"^^xsd:string ;
+    prov:activity ns1:trial1Execution .
+
+ns1:fileAcc37AddAcc a prov:Communication,
+        "fileAccessAddition"^^xsd:string ;
+    prov:activity ns1:trial1Execution .
+
+ns1:inst_l_py_1 a prov:Agent,
+        prov:SoftwareAgent ;
+    ns1:codeHash "e8c4d3f93ab916b41f6749fc43fe385c9cda18e4"^^xsd:string ;
+    ns1:id "1"^^xsd:int ;
+    ns1:script "inst_l.py"^^xsd:string .
+
+ns1:inst_l_py_2 a prov:Agent,
+        prov:SoftwareAgent ;
+    ns1:codeHash "e8c4d3f93ab916b41f6749fc43fe385c9cda18e4"^^xsd:string ;
+    ns1:id "2"^^xsd:int ;
+    ns1:script "inst_l.py"^^xsd:string .
+
+ns1:trial1ComparedTo2 a prov:Influence,
+        "comparison"^^xsd:string ;
+    prov:influencer ns1:trial2Execution .
+
+ns1:trial1ExecutionByScript a prov:Association ;
+    prov:agent ns1:inst_l_py_1 .
+
+ns1:trial2Execution a prov:Activity ;
+    prov:qualifiedAssociation ns1:trial2ExecutionByScript ;
+    prov:startedAtTime "2020-03-01T17:17:33.878053"^^xsd:dateTime ;
+    ns1:nowCommand "run inst_l.py 117 process_freqs.jpg res_summary.csv res_summary.jpg res_conflicts.json trace_1.json trace_2.json trace_3.json trace_4.json"^^xsd:string ;
+    ns1:parentId "1"^^xsd:int .
+
+ns1:trial2ExecutionByScript a prov:Association ;
+    prov:agent ns1:inst_l_py_2 .
+
+ns1:trial1Execution a prov:Activity ;
+    prov:endedAtTime "2020-03-01T17:15:58.962865"^^xsd:dateTime ;
+    prov:qualifiedAssociation ns1:trial1ExecutionByScript ;
+    prov:qualifiedInfluence ns1:trial1ComparedTo2 ;
+    prov:startedAtTime "2020-03-01T17:14:57.588969"^^xsd:dateTime ;
+    ns1:nowCommand "run inst_l.py 216 process_freqs.jpg res_summary.csv res_summary.jpg res_conflicts.json trace_1.json trace_2.json trace_3.json trace_4.json"^^xsd:string .
+

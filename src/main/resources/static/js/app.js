@@ -175,6 +175,7 @@ function SnorqlCtrl( $scope,  $timeout, $window, $location,  snorql,  config) {
     }
 
   $scope.loadData=function(){
+      $scope.datasource = "Loading...";
       snorql.loadFile($scope.turtleFile).then(function (value) {
           $scope.datasource = value;
       });
@@ -223,8 +224,6 @@ function appConfig($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
         // Home page
         .when('/', {title: 'welcome to snorql', reloadOnSearch: false, templateUrl: '/partials/home.html'})
-        //TTL Data
-        .when('/data',{title: 'TTL Data', templateUrl: '/partials/data.html'})
         // COPYRIGHT
         .when('/faq',{title: 'Explore data', templateUrl: '/partials/faq.html'})
         // Pages (in nextprot-docs/pages): about, copyright...

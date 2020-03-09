@@ -21,7 +21,7 @@ import org.openrdf.rio.RDFParseException;
 public interface SesameRepository{
 
 	List<String> getTurtleFiles();
-	String loadFile(String file);
+	void loadFile(String file);
 	void testLoadTurtleData(String data);
 	void loadTurtleData(String data);
 	boolean isDataLoadAllowed();

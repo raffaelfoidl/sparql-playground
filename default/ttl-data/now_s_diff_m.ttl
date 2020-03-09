@@ -1,0 +1,69 @@
+@prefix ns1: <https://github.com/gems-uff/noworkflow#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ns1:module1609_r a prov:Entity,
+        "moduleDependency"^^xsd:string ;
+    rdfs:label "PIL"^^xsd:string ;
+    prov:atLocation "/mnt/2A96E79A96E764B3/Universitaet/Bachelorarbeit/Repos/noworkflow/venv/lib/python3.5/site-packages/PIL/__init__.py"^^xsd:string ;
+    prov:qualifiedInvalidation ns1:module1609RemoveDep ;
+    ns1:codeHash "59eccc9b5aa634940d35bd2d89ec78e4391279d7"^^xsd:string ;
+    ns1:id "1609"^^xsd:int ;
+    ns1:version "6.2.2"^^xsd:string .
+
+ns1:module1983_r a prov:Entity,
+        "moduleDependency"^^xsd:string ;
+    rdfs:label "PIL._version"^^xsd:string ;
+    prov:atLocation "/mnt/2A96E79A96E764B3/Universitaet/Bachelorarbeit/Repos/noworkflow/venv/lib/python3.5/site-packages/PIL/_version.py"^^xsd:string ;
+    prov:qualifiedInvalidation ns1:module1983RemoveDep ;
+    ns1:codeHash "df16dce6036884b690cf10ccd102496f5b838327"^^xsd:string ;
+    ns1:id "1983"^^xsd:int ;
+    ns1:version "6.2.2"^^xsd:string .
+
+ns1:inst_s_py_1 a prov:Agent,
+        prov:SoftwareAgent ;
+    ns1:codeHash "36ab365241dd2b2269eb84c5a2b28b157d7fb208"^^xsd:string ;
+    ns1:id "1"^^xsd:int ;
+    ns1:script "inst_s.py"^^xsd:string .
+
+ns1:inst_s_py_7 a prov:Agent,
+        prov:SoftwareAgent ;
+    ns1:codeHash "3fa15a6f6c9e78302b80729cd100f677c05bddce"^^xsd:string ;
+    ns1:id "7"^^xsd:int ;
+    ns1:script "inst_s.py"^^xsd:string .
+
+ns1:module1609RemoveDep a prov:Invalidation ;
+    prov:activity ns1:trial1Execution ;
+    prov:hadRole "dependencyRemoval"^^xsd:string .
+
+ns1:module1983RemoveDep a prov:Invalidation ;
+    prov:activity ns1:trial1Execution ;
+    prov:hadRole "dependencyRemoval"^^xsd:string .
+
+ns1:trial1ComparedTo7 a prov:Influence,
+        "comparison"^^xsd:string ;
+    prov:influencer ns1:trial7Execution .
+
+ns1:trial1ExecutionByScript a prov:Association ;
+    prov:agent ns1:inst_s_py_1 .
+
+ns1:trial7Execution a prov:Activity ;
+    prov:endedAtTime "2020-02-29T11:00:33.061984"^^xsd:dateTime ;
+    prov:qualifiedAssociation ns1:trial7ExecutionByScript ;
+    prov:startedAtTime "2020-02-29T11:00:29.451511"^^xsd:dateTime ;
+    ns1:nowCommand "run -v inst_s.py data_small.csv"^^xsd:string ;
+    ns1:parentId "6"^^xsd:int .
+
+ns1:trial7ExecutionByScript a prov:Association ;
+    prov:agent ns1:inst_s_py_7 .
+
+ns1:trial1Execution a prov:Activity ;
+    prov:endedAtTime "2020-02-28T19:54:49.953933"^^xsd:dateTime ;
+    prov:qualifiedAssociation ns1:trial1ExecutionByScript ;
+    prov:qualifiedInfluence ns1:trial1ComparedTo7 ;
+    prov:startedAtTime "2020-02-28T19:54:46.434460"^^xsd:dateTime ;
+    ns1:nowCommand "run inst_s.py data.csv"^^xsd:string .
+

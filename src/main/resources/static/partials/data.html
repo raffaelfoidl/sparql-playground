@@ -1,6 +1,0 @@
-<div id="content" class="content codemirror-data">
-	Select data source:
-	<select ng-model="turtleFile" ng-change="handleClick(turtleFile)" ng-options="x for x in files"></select>
-	<button type="button" class="btn btn-primary" style="margin-top:0;" ng-click="loadData()">Load Turtle Data</button>
-	<textarea class="form-control" rows="20" ui-codemirror="{lineNumbers: true, indentWithTabs: true, readOnly: true, uiRefresh:true,mode:'sparql'}" ng-model="datasource"></textarea>
-</div>

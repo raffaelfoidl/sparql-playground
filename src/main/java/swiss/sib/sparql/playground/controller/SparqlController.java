@@ -73,7 +73,9 @@ public class SparqlController {
 		if((System.getProperty("reload") != null) && (System.getProperty("reload").equalsIgnoreCase("false"))){ //check if loading data is not allowed
 			throw new SparqlTutorialException("You must run the application in localhost in order to load data. Download it by clicking on the link below the page");
 		}else {
-			response.getOutputStream().write(sparqlService.loadFile(file).getBytes(StandardCharsets.UTF_8));
+			//response.getOutputStream().write(sparqlService.loadFile(file).getBytes(StandardCharsets.UTF_8));
+			sparqlService.loadFile(file);
+			response.getOutputStream().write(("Loaded " + file).getBytes());
 		}
 	}
 

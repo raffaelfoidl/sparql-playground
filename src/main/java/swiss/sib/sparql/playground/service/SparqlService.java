@@ -154,10 +154,10 @@ public class SparqlService implements InitializingBean {
 
     }
 
-    public String loadFile(String data) {
+    public void loadFile(String data) {
         if (isDataLoadAllowed()) {
             repository.clearData();
-            return repository.loadFile(data);
+            repository.loadFile(data);
         } else {
             throw new SparqlTutorialException("Loading data is not supported for native store");
         }

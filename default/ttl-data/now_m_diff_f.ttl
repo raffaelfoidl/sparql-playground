@@ -1,0 +1,43 @@
+@prefix ns1: <https://github.com/gems-uff/noworkflow#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ns1:trial1Execution a prov:Activity ;
+    prov:endedAtTime "2020-02-28T22:03:18.611949"^^xsd:dateTime ;
+    prov:qualifiedAssociation ns1:trial1ExecutionByScript ;
+    prov:qualifiedInfluence ns1:trial1ComparedTo2 ;
+    prov:startedAtTime "2020-02-28T22:02:44.520397"^^xsd:dateTime ;
+    ns1:nowCommand "run -v inst_m.py 6 in.jpg out.jpg diff.jpg"^^xsd:string .
+
+ns1:inst_m_py_1 a prov:Agent,
+        prov:SoftwareAgent ;
+    ns1:codeHash "7fea8fdb96c67b95225d4c992a17a7412a25fb43"^^xsd:string ;
+    ns1:id "1"^^xsd:int ;
+    ns1:script "inst_m.py"^^xsd:string .
+
+ns1:inst_m_py_2 a prov:Agent,
+        prov:SoftwareAgent ;
+    ns1:codeHash "1b26f18ec66f49053cc72b0c193327b77370cacd"^^xsd:string ;
+    ns1:id "2"^^xsd:int ;
+    ns1:script "inst_m.py"^^xsd:string .
+
+ns1:trial1ComparedTo2 a prov:Influence,
+        "comparison"^^xsd:string ;
+    prov:influencer ns1:trial2Execution .
+
+ns1:trial1ExecutionByScript a prov:Association ;
+    prov:agent ns1:inst_m_py_1 .
+
+ns1:trial2Execution a prov:Activity ;
+    prov:endedAtTime "2020-02-28T22:04:58.505464"^^xsd:dateTime ;
+    prov:qualifiedAssociation ns1:trial2ExecutionByScript ;
+    prov:startedAtTime "2020-02-28T22:04:29.281454"^^xsd:dateTime ;
+    ns1:nowCommand "run -v inst_m.py 6 in.jpg out.jpg diff.jpg"^^xsd:string ;
+    ns1:parentId "1"^^xsd:int .
+
+ns1:trial2ExecutionByScript a prov:Association ;
+    prov:agent ns1:inst_m_py_2 .
+

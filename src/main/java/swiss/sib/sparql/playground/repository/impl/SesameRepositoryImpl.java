@@ -96,13 +96,13 @@ public class SesameRepositoryImpl implements SesameRepository, InitializingBean 
 		if (!nativeConfig) {
 			rep.initialize();
 			logger.info("Loading turtle files from " + ttlFile);
-			addTTLFiles(ttlFile, rep.getConnection());
+			addTTLFiles(ttlFile, rep.getConnection(), false);
 		} else if (nativeConfig && !sesameDataValueFile.exists()) {
 			rep.initialize();
 			logger.info("No previous sesame repository found in " + sesameDataValueFile);
 			logger.info("Loading turtle files from " + ttlFile);
 			logger.info("Depending on the number of triplets, this may take some time to load the first time, please be patient ....");
-			addTTLFiles(ttlFile, rep.getConnection());
+			addTTLFiles(ttlFile, rep.getConnection(), true);
 		} else {
 			rep.initialize();
 			logger.info("Sesame repository already found in " + sesameDataValueFile);
@@ -117,12 +117,16 @@ public class SesameRepositoryImpl implements SesameRepository, InitializingBean 
 
 	}
 
-	private static void addTTLFiles(final File folder, RepositoryConnection conn) throws RDFParseException, RepositoryException, IOException {
+	private static void addTTLFiles(final File folder, RepositoryConnection conn, Boolean add) throws RDFParseException, RepositoryException, IOException {
 		long start = System.currentTimeMillis();
 		for (final File fileEntry : folder.listFiles()) {
 			if (!fileEntry.isDirectory()) {
-				logger.debug("Loading " + fileEntry);
-				conn.add(fileEntry, "", RDFFormat.TURTLE, new Resource[] {});
+				if (add) {
+					logger.debug("Load " + fileEntry);
+					conn.add(fileEntry, "", RDFFormat.TURTLE, new Resource[] {});
+				} else {
+					logger.debug("Found " + fileEntry);
+				}
 			}
 		}
 		logger.info("Loading turtle files finished in " + (System.currentTimeMillis() - start) + " ms");
@@ -176,12 +180,11 @@ public class SesameRepositoryImpl implements SesameRepository, InitializingBean 
 	}
 
 	@Override
-	public String loadFile(String file) {
+	public void loadFile(String file) {
 		try {
 			byte[] content = Files.readAllBytes(Paths.get(Application.FOLDER + "/ttl-data/" + file));
 			InputStream stream = new ByteArrayInputStream(content);
 			rep.getConnection().add(stream, "", RDFFormat.TURTLE, new Resource[] {});
-			return new String(content);
 
 		} catch (RepositoryException e) {
 			e.printStackTrace();

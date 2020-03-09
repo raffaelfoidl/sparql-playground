@@ -1,6 +1,12 @@
-    <div id="content" class="content " >
+    <div id="content" class="content " style="margin-top:-10px">
+      <div>
+          Select data source:
+          <select ng-model="turtleFile" ng-change="handleClick(turtleFile)" ng-options="x for x in files"></select>
+          <button type="button" class="btn btn-primary" style="margin-top:0;" ng-click="loadData()">Reload Data</button>
+          <input readonly ng-model="datasource" style="border:none;" />
+      </div>
 
-      <div class="row row-offcanvas row-offcanvas-right">
+      <div class="row row-offcanvas row-offcanvas-right" style="margin-top:15px;">
 
         <div class="col-xs-13 col-sm-13 col-md-7 ">
           <p class="pull-right visible-sm visible-xs -visible-md">
