@@ -49,11 +49,13 @@ public class SparqlController {
 
 	@RequestMapping(value = "/ttl-data", method = RequestMethod.GET)
 	public void sparqlData(HttpServletResponse response) throws QueryEvaluationException, Exception {
+		response.addHeader("Content-Type", "text/plain");
 		sparqlService.writeData(response.getOutputStream());
 	}
 
 	@RequestMapping(value = "/ttl-data/files", method = RequestMethod.GET)
 	public void sparqlDataFiles(HttpServletResponse response) throws QueryEvaluationException, Exception {
+		response.addHeader("Content-Type", "text/plain");
 		sparqlService.getTurtleFiles(response.getOutputStream());
 	}
 
@@ -69,7 +71,7 @@ public class SparqlController {
 
 	@RequestMapping(value = "/ttl-data/files", method = RequestMethod.PUT)
 	public void sparqlDataFile(@RequestParam(value = "file", required = true) String file, HttpServletResponse response) throws QueryEvaluationException, Exception {
-
+		response.addHeader("Content-Type", "text/plain");
 		if((System.getProperty("reload") != null) && (System.getProperty("reload").equalsIgnoreCase("false"))){ //check if loading data is not allowed
 			throw new SparqlTutorialException("You must run the application in localhost in order to load data. Download it by clicking on the link below the page");
 		}else {
