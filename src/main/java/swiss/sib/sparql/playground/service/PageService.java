@@ -22,7 +22,7 @@ import swiss.sib.sparql.playground.utils.IOUtils;
 @Service
 public class PageService {
 	
-	private static final String ABOUT_PAGE = "98_About SPARQL Playground";
+	private static final String ABOUT_PAGE = "98_SPARQL Playground";
 
     @Cacheable("page-tree")
 	public Map<String, Object> getPagesTree() throws IOException {

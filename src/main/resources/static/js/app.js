@@ -24,7 +24,7 @@ function appRun(gitHubContent, config) {
   gitHubContent.initialize({
         // baseUrl:"http://uat-web2:8080",
         helpPath:'rdfhelp.json',
-        helpTitle:'Documentation',
+        helpTitle:'About',
         root:'help', // specify the root of RDF entity routes
         githubRepo: '/',
         githubApi:window.location.origin,
@@ -203,7 +203,7 @@ function SnorqlCtrl( $scope,  $timeout, $window, $location,  snorql,  config) {
     snorql.updateQuery($location.search())
 
       if($location.path()==='/') {
-          $window.document.title = "SPARQL playground";
+          $window.document.title = "SPARQL Playground";
       }
 
   })
