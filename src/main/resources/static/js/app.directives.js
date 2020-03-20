@@ -73,7 +73,7 @@ function sparqlFormatter(snorql) {
           formatter= snorql.SPARQLResultFormatter()
           element.html(formatter.toDOM())
           element.find('a').click(function(){
-            window.scrollTop();
+            window.scrollTo(0, 0);
           })
         }
       });

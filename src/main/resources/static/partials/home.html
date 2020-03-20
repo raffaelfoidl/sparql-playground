@@ -2,8 +2,8 @@
       <div>
           Select data source:
           <select ng-model="turtleFile" ng-change="handleClick(turtleFile)" ng-options="x for x in files"></select>
-          <button type="button" class="btn btn-primary" style="margin-top:0;" ng-click="loadData()">Reload Data</button>
-          <input readonly ng-model="datasource" style="border:none;" />
+          <button type="button" class="btn btn-primary" style="margin-top:0;" ng-disabled="waiting||datasource=='Loading...'" ng-click="loadData()">Reload Data</button>
+          <input readonly ng-model="datasource" style="border:none;width:375px;"  />
       </div>
 
       <div class="row row-offcanvas row-offcanvas-right" style="margin-top:15px;">
