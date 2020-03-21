@@ -1,7 +1,7 @@
 # SPARQL Playground
 
 *Note: This is an adaptation of the <a target="_blank" href="https://github.com/calipho-sib/sparql-playground">sparql-playground</a> which was created
-in the course of my <a target="_blank" href="https://github.com/raffaelfoidl/ProvCaptPyEnvs">bachelor thesis</a> in Software & Information Engineering at University of Technology, Vienna.
+in the course of my <a target="_blank" href="https://github.com/raffaelfoidl/ProvCaptPyEnvs">bachelor thesis</a> in Software & Information Engineering Vienna University of Technology.
 For information on the changes made to the original version, refer to the corresponding about page or provcapt/pages/99_Modifications for ProvCaptPyEnvs.md.*
 
 SPARQL Playground is a standalone multi-platform web application used to learn SPARQL (implemented in Java Spring Boot and AngularJS). 
