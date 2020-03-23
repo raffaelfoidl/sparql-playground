@@ -30,11 +30,11 @@ function snorql($http, $q, $timeout, $location, config) {
                   '}\n' +
                   'ORDER BY (!BOUND(?hasValue)) ?property ?hasValue ?isValueOf',
 
-    description:   'Here is a an example on how to get the first 10 rows of a dataset. \nClick on the examples on the right to continue your journey about learning SPARQL.',
+    description:   'In this text field, descriptions of the queries to your right will appear after selecting them.',
 
-
-    title:"Extract some data",
-    query:'SELECT DISTINCT * WHERE {\n  ?s ?p ?o\n}\nLIMIT 10\n\n\n# When doing such a query it is important to set LIMIT 10.\n# This limit avoids performance issues, if the size of the dataset is unknown.',
+    command:"",
+    title:"Welcome!",
+    query:'# Feel free to select (and edit) a query from the right, create new ones\n# in the \"default/queries\" folder or directly enter one in this text field',
 
     // set your endpoint here
     sparqlEndpoint:config.sparql.endpoint,
@@ -100,7 +100,7 @@ function snorql($http, $q, $timeout, $location, config) {
 
     // initial selected query title
     this.queryTitle = defaultSnorql.title;
-    
+
     // initial url for examples
     this.examplesUrl=defaultSnorql.sparqlUrlExamples;
 
@@ -112,6 +112,7 @@ function snorql($http, $q, $timeout, $location, config) {
 
     
     this.description = defaultSnorql.description;
+    this.command = defaultSnorql.command;
     //
     // wrap promise to this object
     this.$promise=$q.when(this);
@@ -211,6 +212,30 @@ function snorql($http, $q, $timeout, $location, config) {
 	   })
   };
 
+  Snorql.prototype.getTurtleFiles=function(){
+      var self=this;
+      var url = this.dataURL + "/files";
+      return $http({
+          url: url,
+          method: 'GET'}).then(function(response){
+          return response.data;
+      }, function(error){
+          alert("error " + error.data.responseText);
+      })
+  }
+
+  Snorql.prototype.loadFile=function(file){
+      var self=this;
+      var url = this.dataURL + "/files";
+      return $http({
+          url: url,
+          method: 'PUT',
+          params: {file : file}}).then(function(response){
+          return response.data;
+      }, function(error){
+          alert("error " + error.data.responseText);
+      })
+  }
 	  
   // manage default snorql state
   Snorql.prototype.updateQuery=function(params){

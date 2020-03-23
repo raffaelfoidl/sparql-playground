@@ -1,7 +1,0 @@
-#title:GROUP BY
-#color:ex-red 
-SELECT *
-WHERE 
-{
-	?taxon up:otherName ?name 
-} GROUP BY ?taxon ?name

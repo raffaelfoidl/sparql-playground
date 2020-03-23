@@ -1,6 +1,0 @@
-#title: HAVING  a filter for aggeregates
-#color:ex-red 
-SELECT ?taxon
-WHERE {
-  ?taxon up:otherName ?name
-} GROUP BY ?taxon HAVING (COUNT(?name) > 2)

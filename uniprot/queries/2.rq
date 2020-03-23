@@ -1,8 +1,0 @@
-#title:Select all taxa, and their scientific name, from the UniProt taxonomy
-#tags:taxonomy
-SELECT ?taxon ?name
-WHERE
-{
-	?taxon a up:Taxon .
-	?taxon up:scientificName ?name .
-}

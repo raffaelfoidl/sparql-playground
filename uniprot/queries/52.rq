@@ -1,8 +1,0 @@
-#title:Taxon whose scientific name is not Tamias
-#color:ex-red 
-SELECT ?taxon ?name
-WHERE {
-  ?taxon a up:Taxon .
-  ?taxon up:scientificName ?name .
-  FILTER(?name != "Marmota")
-}           

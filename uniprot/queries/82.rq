@@ -1,6 +1,0 @@
-#title: ORDER BY name
-#color:ex-red 
-SELECT *
-WHERE {
- ?taxon up:scientificName ?name .
-} ORDER BY ?name

@@ -29,7 +29,7 @@ public class SparqlServiceIntegrationTest {
 		Assert.assertTrue(result);
 	}
 
-	@Test
+	@Test @Ignore
 	public void testQueryWithURI() throws Exception {
 		String query = "select ?x where { ?x rdf:type <http://example.org/tuto/ontology#Cat> . }";
 		TupleQueryResult result = (TupleQueryResult) sparqlService.evaluateQuery(query);
@@ -37,7 +37,7 @@ public class SparqlServiceIntegrationTest {
 
 	}
 
-	@Test
+	@Test @Ignore
 	public void testQueryWithNamespaces() throws Exception {
 		String query = sparqlService.getPrefixesString();
 		query += " select ?x where { ?x rdf:type tto:Cat . }";
@@ -97,7 +97,7 @@ public class SparqlServiceIntegrationTest {
 	}
 	
 	
-	@Test
+	@Test @Ignore
 	public void testCountNumberOfTriples() throws Exception {
 		Long n = sparqlService.countNumberOfTriples();
 		System.out.println(n + " triples");

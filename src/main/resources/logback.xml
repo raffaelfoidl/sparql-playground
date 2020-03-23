@@ -10,8 +10,11 @@
 	<logger name="swiss.sib">
 		<level value="DEBUG" />
 	</logger>
-	
+
 	<root level="error">
 		<appender-ref ref="STDOUT" />
 	</root>
+
+	<!-- restrict or turn off logging of third party classes in order to prevent log target from being flooded -->
+	<logger name="org.openrdf.query.algebra.evaluation.function.FunctionRegistry" level="OFF" />
 </configuration>

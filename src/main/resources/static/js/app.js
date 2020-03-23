@@ -24,7 +24,7 @@ function appRun(gitHubContent, config) {
   gitHubContent.initialize({
         // baseUrl:"http://uat-web2:8080",
         helpPath:'rdfhelp.json',
-        helpTitle:'Documentation',
+        helpTitle:'About',
         root:'help', // specify the root of RDF entity routes
         githubRepo: '/',
         githubApi:window.location.origin,
@@ -67,8 +67,12 @@ function SnorqlCtrl( $scope,  $timeout, $window, $location,  snorql,  config) {
     uiRefresh:true,
     mode:'sparql'
   };
-  
-  
+
+  // turtle files
+  $scope.files = [];
+  $scope.turtleFile = "";
+
+
   $scope.executeFaq = function (faq){
       $scope.executionTime=false;
       $scope.waiting=false;
@@ -107,7 +111,7 @@ function SnorqlCtrl( $scope,  $timeout, $window, $location,  snorql,  config) {
     $location.search('property',null)
     $location.search('describe',null)
     $location.search('output',output)
- 
+
     var params=angular.extend($location.search(),{output:output});
     snorql.executeQuery(sparql, params).$promise.then(function(){
       $scope.waiting=false;
@@ -124,10 +128,11 @@ function SnorqlCtrl( $scope,  $timeout, $window, $location,  snorql,  config) {
 	  }else {
 		    snorql.query=snorql.examples[elm].sparql;
 	  }
-	  
+
     snorql.description=snorql.examples[elm].description;
     snorql.selectedQueryId=snorql.examples[elm].userQueryId;
     snorql.queryTitle=snorql.examples[elm].userQueryId + ") " + snorql.examples[elm].title;
+    snorql.command=snorql.examples[elm].command;
     $scope.qSelected=elm
     $('.row-offcanvas').removeClass('active')
   };
@@ -151,18 +156,44 @@ function SnorqlCtrl( $scope,  $timeout, $window, $location,  snorql,  config) {
   $scope.logout=function(){
     user.logout();
   };
-  
+
   $scope.pushData =function(){
 	  snorql.pushData();
    };
 
+  $scope.getTurtleFiles=function(){
+      snorql.getTurtleFiles().then(function (value) {
+          $scope.files = value.split("\n")
+          $scope.files.sort();
+          $scope.turtleFile = $scope.files[0];
+          $scope.loadData();
+      });
+  }
+
+    $scope.handleClick = function(selectedItem) {
+        var index = $scope.files.indexOf(selectedItem);
+        $scope.turtleFile = $scope.files[index];
+    }
+
+  $scope.loadData=function(){
+      $scope.datasource = "Loading...";
+      snorql.loadFile($scope.turtleFile).then(function (value) {
+          $scope.datasource = value;
+      });
+  }
+
+  var init=function(){
+      $scope.getTurtleFiles();
+      console.log("loaded turtle files");
+  }
+  init();
   //
   // load api stuff
   snorql.loadPrefixes();
   snorql.loadExamples();
   snorql.loadFaqs();
   snorql.loadData();
-  
+
   //
   // kind of queries,
   // query, describe, class, property
@@ -172,7 +203,7 @@ function SnorqlCtrl( $scope,  $timeout, $window, $location,  snorql,  config) {
     snorql.updateQuery($location.search())
 
       if($location.path()==='/') {
-          $window.document.title = "SPARQL playground";
+          $window.document.title = "SPARQL Playground";
       }
 
   })
@@ -194,8 +225,6 @@ function appConfig($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
         // Home page
         .when('/', {title: 'welcome to snorql', reloadOnSearch: false, templateUrl: '/partials/home.html'})
-        //TTL Data
-        .when('/data',{title: 'TTL Data', templateUrl: '/partials/data.html'})
         // COPYRIGHT
         .when('/faq',{title: 'Explore data', templateUrl: '/partials/faq.html'})
         // Pages (in nextprot-docs/pages): about, copyright...

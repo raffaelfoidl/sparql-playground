@@ -1,9 +1,0 @@
-#tags:UniProtKB,Swiss-Prot,Disease
-#title:Select UniProt records with a related disease and a comment
-#id:5
-SELECT ?protein ?disease ?comment
-WHERE {?protein a up:Protein;
-                up:annotation ?annotation .
-       ?annotation up:disease ?disease ;
-                rdfs:comment ?comment .
-}

@@ -1,0 +1,16 @@
+#title:Get environment attributes
+#comment:This returns all environment attribute names and values that have been recorded as part of deployment provenance capturing.
+#command:now provo -e --format turtle 7
+#tags:noworkflow,order,provo
+#color:ex-green
+
+SELECT ?attribute_name ?attribute_value
+WHERE {
+ ?attributes a prov:Collection ;
+			 prov:hadMember ?attribute .
+ ?attribute a prov:Entity,
+			  "environmentAttribute" ;
+			rdfs:label ?attribute_name ;
+			prov:value ?attribute_value .
+}
+ORDER BY ?attribute_name

@@ -5,7 +5,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Map;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
 
 import javax.annotation.PostConstruct;
 
@@ -94,13 +96,13 @@ public class SesameRepositoryImpl implements SesameRepository, InitializingBean 
 		if (!nativeConfig) {
 			rep.initialize();
 			logger.info("Loading turtle files from " + ttlFile);
-			addTTLFiles(ttlFile, rep.getConnection());
+			addTTLFiles(ttlFile, rep.getConnection(), false);
 		} else if (nativeConfig && !sesameDataValueFile.exists()) {
 			rep.initialize();
 			logger.info("No previous sesame repository found in " + sesameDataValueFile);
 			logger.info("Loading turtle files from " + ttlFile);
 			logger.info("Depending on the number of triplets, this may take some time to load the first time, please be patient ....");
-			addTTLFiles(ttlFile, rep.getConnection());
+			addTTLFiles(ttlFile, rep.getConnection(), true);
 		} else {
 			rep.initialize();
 			logger.info("Sesame repository already found in " + sesameDataValueFile);
@@ -115,15 +117,20 @@ public class SesameRepositoryImpl implements SesameRepository, InitializingBean 
 
 	}
 
-	private static void addTTLFiles(final File folder, RepositoryConnection conn) throws RDFParseException, RepositoryException, IOException {
+	private static void addTTLFiles(final File folder, RepositoryConnection conn, Boolean add) throws RDFParseException, RepositoryException, IOException {
 		long start = System.currentTimeMillis();
 		for (final File fileEntry : folder.listFiles()) {
 			if (!fileEntry.isDirectory()) {
-				logger.debug("Loading " + fileEntry);
-				conn.add(fileEntry, "", RDFFormat.TURTLE, new Resource[] {});
+				if (add) {
+					logger.debug("Load " + fileEntry);
+					conn.add(fileEntry, "", RDFFormat.TURTLE, new Resource[] {});
+				} else {
+					logger.debug("Found " + fileEntry);
+				}
 			}
 		}
-		logger.info("Loading turtle files finished in " + (System.currentTimeMillis() - start) + " ms");
+		String verb = add ? "Loading" : "Discovering";
+		logger.info(verb + " turtle files finished in " + (System.currentTimeMillis() - start) + " ms");
 
 	}
 
@@ -151,6 +158,42 @@ public class SesameRepositoryImpl implements SesameRepository, InitializingBean 
 			RepositoryResult<Statement> statements = rep.getConnection().getStatements(null, null, null, true);
 			rep.getConnection().remove(statements);
 		} catch (RepositoryException e) {
+			e.printStackTrace();
+			throw new SparqlTutorialException(e);
+		}
+	}
+
+	@Override
+	public List<String> getTurtleFiles() {
+		File folder = new File(Application.FOLDER + "/ttl-data");
+		File[] files = folder.listFiles();
+		List<String> returnValue = new ArrayList<>();
+		if (files == null)
+			return returnValue;
+
+		for (final File fileEntry : files) {
+			if (!fileEntry.isDirectory()) {
+				returnValue.add(fileEntry.getName());
+			}
+		}
+
+		return returnValue;
+	}
+
+	@Override
+	public void loadFile(String file) {
+		try {
+			byte[] content = Files.readAllBytes(Paths.get(Application.FOLDER + "/ttl-data/" + file));
+			InputStream stream = new ByteArrayInputStream(content);
+			rep.getConnection().add(stream, "", RDFFormat.TURTLE, new Resource[] {});
+
+		} catch (RepositoryException e) {
+			e.printStackTrace();
+			throw new SparqlTutorialException(e);
+		} catch (RDFParseException e) {
+			e.printStackTrace();
+			throw new SparqlTutorialException(e);
+		} catch (IOException e) {
 			e.printStackTrace();
 			throw new SparqlTutorialException(e);
 		}

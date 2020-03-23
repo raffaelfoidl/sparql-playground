@@ -2,9 +2,9 @@
 #comment:Counts the number of instances per class
 #tags:class, instance
 
-SELECT ?class (count(?instance) as ?numberOfInstances) 
+SELECT ?class (count(?instance) AS ?numberOfInstances)
 WHERE {
     ?instance a ?class .
 }
-group by ?class
-order by desc(?numberOfInstances) 
+GROUP BY ?class
+ORDER BY desc(?numberOfInstances)

@@ -1,2 +1,0 @@
-@prefix dbo:	<http://dbpedia.org/ontology/> .
-@prefix dbr:	<http://dbpedia.org/resource/> .

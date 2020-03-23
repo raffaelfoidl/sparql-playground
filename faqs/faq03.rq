@@ -7,4 +7,4 @@ WHERE {
     ?class a rdfs:Class
     #you may want to replace rdfs:Class with owl:Class
 }
-order by ?class
+ORDER BY ?class

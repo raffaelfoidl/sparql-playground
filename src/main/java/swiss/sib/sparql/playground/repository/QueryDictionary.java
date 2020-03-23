@@ -91,7 +91,8 @@ public class QueryDictionary {
 		dsq.setTitle(rawProps.get("title"));
 		dsq.setOwner("nextprot");
 		dsq.setBackgroundColor(rawProps.get("color"));
-		dsq.setDescription(rawProps.get("comment"));
+		dsq.setDescription(rawProps.get("comment").replaceAll("\\\\n", "\n"));
+		dsq.setCommand(rawProps.get("command"));
 
 		try {
 
@@ -154,6 +155,7 @@ public class QueryDictionary {
 		q = parseAndGlupRawQuery(rawData, q, "count", meta);
 		q = parseAndGlupRawQuery(rawData, q, "title", meta);
 		q = parseAndGlupRawQuery(rawData, q, "comment", meta);
+		q = parseAndGlupRawQuery(rawData, q, "command", meta);
 		q = parseAndGlupRawQuery(rawData, q, "time", meta);
 		q = parseAndGlupRawQuery(rawData, q, "img", meta);
 		q = parseAndGlupRawQuery(rawData, q, "color", meta);
