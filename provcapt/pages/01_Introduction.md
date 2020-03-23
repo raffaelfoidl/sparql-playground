@@ -1,6 +1,6 @@
 # Introduction
 This application is used as part of my <a target="_blank" href="https://github.com/raffaelfoidl/ProvCaptPyEnvs">bachelor thesis</a>
-*Provenance Capturing for Python Environments* in Software & Information Engineering Vienna University of Technology.
+*Provenance Capturing for Python Environments* in Software & Information Engineering at Vienna University of Technology.
 It deals with two selected approaches of capturing provenance data for Python scripts,
 <a target="_blank" href="https://github.com/raffaelfoidl/yw-prototypes">YesWorkflow</a> and 
 <a target="_blank" href="https://github.com/raffaelfoidl/noworkflow/">noWorkflow</a>.
