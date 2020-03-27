@@ -72,8 +72,3 @@ The project is open source and free under the GNU GPL v2 License. The sources ar
 
 This project was forked from <a target="_blank" href="https://github.com/calipho-sib/sparql-playground">sparql-playground</a>, which
  in turn is a fork of the <a target="_blank" href="http://snorql.nextprot.org/">neXtProt snorql interface.</a>
-
-
-# Contact
-
-For any related questions do not hesitate to <a href="mailto:support@nextprot.org">contact us</a>.
